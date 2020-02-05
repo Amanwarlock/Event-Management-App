@@ -1,0 +1,16 @@
+  <mat-card class="sidenav-profile-card">
+    <div class="profile-container">
+    <img  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    </div>
+    <br>
+    <mat-card-content>
+      <p>
+        {{eventManager.email}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  
+
+  <mat-list role="list" class="sidenav-list">
+    <mat-list-item role="listitem" class="sidenav-list-item" *ngFor="let item of sideNavList;let i = index"><button mat-button (click)='onMenuSelect(item)'><mat-icon>{{item.icon}}</mat-icon>{{item.name}}</button></mat-list-item>
+  </mat-list>

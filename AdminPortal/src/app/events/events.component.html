@@ -1,0 +1,51 @@
+
+  <div class="main">
+    <div class="section_1">
+      <mat-toolbar-row class="well-tool-bar">
+        <mat-icon class="well-icon">event</mat-icon>
+        <span>Events</span>
+        <span class="well-spacer"></span>
+        <button mat-mini-fab color="primary" matRippleColor="blue" matTooltip="Create Event" (click)="OnCreateEvent()"><mat-icon>add</mat-icon></button>
+      </mat-toolbar-row>
+    </div>
+    <div class="section_2">
+      <mat-card class="well-content">
+
+        <mat-toolbar-row>
+          <form class="events-search-form">
+            <mat-form-field class="search-full-width">
+                <button mat-button  matPrefix mat-icon-button>
+                  <mat-icon>search</mat-icon>
+              </button>
+                <input matInput type="text" placeholder="Search events" [formControl]="mySearchControl">
+                <button mat-button *ngIf="mySearchControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="OnResetEventNameField()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field class="date-search">
+              <button mat-button *ngIf="dateSearchControl.value" matPrefix mat-icon-button aria-label="Clear" (click)="OnResetDateField()">
+                <mat-icon>close</mat-icon>
+            </button>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="dateSearchControl">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+
+          </form>
+          <span class="well-spacer"></span>
+          <mat-paginator [length]="pageCount$ | async"
+              [pageSize]="10">
+          </mat-paginator>
+
+        </mat-toolbar-row>
+
+        <mat-divider></mat-divider>
+
+        <div class="events-list">
+          <app-event-card *ngFor="let event of eventList$ | async;let i = index" (click)="OnViewEvent(event)" [event]='event'></app-event-card>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>

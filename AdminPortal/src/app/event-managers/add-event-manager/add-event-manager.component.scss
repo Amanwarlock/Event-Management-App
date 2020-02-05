@@ -1,0 +1,79 @@
+.main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: whitesmoke;
+    // overflow-y: hidden;
+      .section_1{
+        background: #19227c;
+        color: #ffffff;
+        font-size: 20px;
+        height: 150px;
+        .well-tool-bar{
+            padding-top: 2%;
+            .well-spacer{
+                flex: 1 1 auto;
+            }
+            .well-icon {
+                padding: 0 14px;
+            }
+        }
+
+        button{
+            margin-right: 5%;
+            background: #ffffff;
+            mat-icon{
+                color: #00004f;
+            }
+        }
+
+      }
+
+      .section_2{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 90px;
+
+          .well-content{
+              width: 85%;
+              margin: auto;
+              height:90%;
+              z-index: 10;
+              overflow: auto;
+          }
+      }
+  }
+
+
+
+  .main ,.section_2, .well-content {
+   
+    .manager-headers-align .mat-expansion-panel-header-title,
+.manager-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.manager-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+      
+}
+
+.manager-headers-align mat-expansion-panel mat-expansion-panel-header{
+  mat-panel-title{
+    span{
+      padding: 1%;
+      margin-left: 2%;
+    }
+  }
+}
+
+
+// flex: 1 1 auto;

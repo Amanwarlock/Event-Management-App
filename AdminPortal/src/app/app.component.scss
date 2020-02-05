@@ -1,0 +1,67 @@
+
+
+.app-title{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+mat-toolbar.mat-toolbar.mat-app-header.mat-toolbar-multiple-rows {
+    background: #00004f;
+    color: #ffffff;
+}
+
+.app-header-icon {
+    padding: 0 14px;
+  }
+  
+  .app-header-spacer {
+    flex: 1 1 auto;
+  }
+  
+
+  .side-nav-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  .sidenav-drawer {
+    padding: 0px;
+    width: 250px;
+  }
+
+
+  mat-drawer-container mat-drawer{
+    ::ng-deep .mat-drawer-inner-container{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  }
+  
+
+  .app-sidenav-container {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      background-color: #afadad; //#524aac;
+    } 
+    ::-webkit-scrollbar-thumb {
+      background-color: #524aac;
+    }
+  }
+  
+  .app-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    ::ng-deep .mat-drawer-inner-container{
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  }

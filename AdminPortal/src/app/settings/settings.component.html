@@ -1,0 +1,33 @@
+<div class="main">
+  <div class="section_1">
+    <mat-toolbar-row class="well-tool-bar">
+      <mat-icon class="well-icon">settings_application</mat-icon>
+      <span>Settings</span>
+      <span class="well-spacer"></span>
+      <button mat-mini-fab color="primary" matRippleColor="blue"><mat-icon>add</mat-icon></button>
+    </mat-toolbar-row>
+  </div>
+  <div class="section_2">
+    <mat-card class="well-content">
+
+      <mat-card class="settings-panel">
+
+        <div class="profile-container">
+          <img  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        </div>
+
+        <div class="user-info">
+          <mat-card-title class="name-field">{{user.firstName}} {{user.lastName}}</mat-card-title>
+          <label>Email:</label> <span>{{user.email}}</span>
+          <br>
+          <label>Role:</label> <span>{{user.role}}</span>
+          <br>
+          <label>Password:</label> <input type="password" disabled="true" value="{{user.password}">
+        </div>
+       
+
+      </mat-card>
+
+    </mat-card>
+  </div>
+</div>

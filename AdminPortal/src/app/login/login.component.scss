@@ -1,0 +1,117 @@
+
+.main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: whitesmoke;
+    // overflow-y: hidden;
+      .section_1{
+        background: #19227c;
+        color: #ffffff;
+        font-size: 20px;
+        height: 40%;
+        .well-tool-bar{
+            padding-top: 2%;
+            .well-spacer{
+                flex: 1 1 auto;
+            }
+            .well-icon {
+                padding: 0 14px;
+            }
+        }
+
+        button{
+            margin-right: 5%;
+            background: #ffffff;
+            mat-icon{
+                color: #00004f;
+            }
+        }
+
+      }
+
+      .section_2{
+          position: fixed;
+          width: 40%;
+          height: 80%;
+          top: 55%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          mat-card{
+              width: 80%;
+              margin: auto;
+              height:80%;
+              z-index: 10;
+          }
+      }
+  }
+
+//   .main .section_2 .well-content mat-toolbar{
+//       position: absolute;
+//       top: 0;
+//       right: 0;
+//       left: 0;
+//       background: transparent;
+//   }
+
+.main .section_2 .well-content {
+    mat-grid-list{
+        .login-title-logo{
+            font-size: 80px;
+        }
+    }
+}
+
+  .main .section_2 .well-content .login-section {
+
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+
+        .login-title-logo{
+            // text-align: center;
+            position: relative;
+            .icon{
+                box-sizing: border-box;
+                font-size: 100px;
+                color: #00004f;
+                margin-bottom: 10px;
+                left: 31%;
+                position: relative;
+            }
+
+            .title{
+                font-size: 20px;
+                margin-top: 10px;
+                text-align: center;
+                font-weight: bold;
+                letter-spacing: 1px;
+                color: #00004f;
+            }
+        }
+
+    .login-fields{
+        margin-top: 15px;
+        mat-form-field{
+            width: 100%;
+        }
+    }
+
+    .login-btn{
+        width: 100%;
+        margin-top: 30px;
+        background: #00004f;
+        color: #ffffff;
+        border-radius: 0;
+        letter-spacing: 1px;
+    }
+
+  }
+
+  .disabled{
+      opacity: 0.5;
+    //   background: #464676 !important;
+    //   color: black !important;
+  }

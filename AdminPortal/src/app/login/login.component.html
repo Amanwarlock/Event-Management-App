@@ -1,0 +1,36 @@
+<div class="main">
+  <div class="section_1"></div>
+  <div class="section_2">
+    <mat-card class="well-content">
+     
+      <div class="login-section">
+
+        <div class="login-title-logo">
+          <mat-icon class="icon">account_circle</mat-icon>
+          <div class="title">SIGN IN</div>
+        </div>
+
+        <!-- (ngSubmit)="login()" -->
+        <form [formGroup]="loginForm" >
+          <div class="login-fields">
+          
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" required>
+              <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+            </mat-form-field>
+          
+            <mat-form-field>
+                <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"  formControlName="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+          </div>
+          <button mat-button class="login-btn" (click)="login()" [disabled]="!loginForm.valid" [class.disabled]="!loginForm.valid">LOGIN</button>
+      </form>
+      <!-- Form Status: {{loginForm.status}} is valid: {{loginForm.valid}} -->
+      </div>
+     
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="main">
+    <div class="section_1">
+      <mat-toolbar-row class="well-tool-bar">
+        <mat-icon class="well-icon">person_add</mat-icon>
+        <span>Create Event Manager</span>
+        <span class="well-spacer"></span>
+      </mat-toolbar-row>
+    </div>
+    <div class="section_2">
+      <mat-card class="well-content">
+  
+        <mat-accordion class="manager-headers-align">
+
+            <form [formGroup]="personalData" >
+              <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Personal data</span>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <mat-form-field>
+                  <input matInput placeholder="First name" formControlName="firstName" required>
+                  <mat-error *ngIf="personalData.controls['firstName'].invalid">Firstname is required</mat-error>
+                </mat-form-field>
+                {{expanded}}
+                <mat-form-field>
+                  <input matInput placeholder="Last name" formControlName="lastName" required>
+                  <mat-error *ngIf="personalData.controls['lastName'].invalid">Lastname is required</mat-error>
+                </mat-form-field>
+            
+                <mat-form-field>
+                  <input matInput type='email' placeholder="Email" formControlName="email" required>
+                  <mat-error *ngIf="personalData.controls['email'].invalid">Email is required</mat-error>
+                </mat-form-field>
+            
+                <mat-action-row>
+                  <button mat-button color="primary" (click)="nextStep()" [disabled]="!personalData.valid" >Next</button>
+                </mat-action-row>
+              </mat-expansion-panel>
+          </form>
+
+          <form [formGroup]="securityData" >
+                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)"  [disabled]="!personalData.valid">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>security</mat-icon>
+                      <span>Security</span>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                  <mat-form-field>
+                  <input matInput placeholder="Enter password" [type]="hide ? 'password' : 'text'" formControlName="password"  required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="securityData.controls['password'].invalid">Password is required</mat-error>
+                </mat-form-field>
+              
+                  <mat-form-field>
+                  <input matInput placeholder="Confirm password" [type]="hide ? 'password' : 'text'"  formControlName="confirmPassword"  required>
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                  <mat-error *ngIf="securityData.controls['confirmPassword'].pristine || securityData.controls['confirmPassword'].errors?.MatchPassword">Password does not match</mat-error>
+                </mat-form-field>
+              
+                  <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="nextStep()" [disabled]="!securityData.valid">Next</button>
+                  </mat-action-row>
+                </mat-expansion-panel>
+          </form>
+
+          <form [formGroup]="roleData">
+                <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" [disabled]="!securityData.valid" >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon>supervised_user_circle</mat-icon>
+                     <span>Role</span> 
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+              
+                  <mat-form-field>
+                  <mat-label>Access role</mat-label>
+                  <!-- [(ngModel)]="selectedRole" name="role" -->
+                  <mat-select  formControlName="role" required>
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                      {{role.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="roleData.controls['role'].invalid">Role must be selected</mat-error>
+                  <!-- <mat-error *ngIf="role.hasError('required')">Role must be selected</mat-error> -->
+                </mat-form-field>
+              
+                  <mat-action-row>
+                    <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                    <button mat-button color="primary" (click)="OnCreate()"  [disabled]="!roleData.valid">Submit</button>
+                  </mat-action-row>
+                </mat-expansion-panel>
+          </form>
+
+          </mat-accordion>
+  
+      </mat-card>
+    </div>
+  </div>

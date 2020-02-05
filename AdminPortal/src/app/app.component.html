@@ -1,0 +1,52 @@
+<!-- HEADER -->
+<mat-toolbar color="app-header" *ngIf="showDashboard">
+  <mat-toolbar-row>
+
+    <button mat-button (click)="drawer.toggle()">
+      <mat-icon class="menu-icon">menu</mat-icon>
+    </button>
+
+    <a routerLink='/events' class="app-title"><span>Dashboard</span></a>
+    
+    <span class="app-header-spacer"></span>
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>settings_power</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!-- SIDE NAV -->
+
+<!-- <mat-drawer-container class="side-nav-container" autosize>
+  <mat-drawer #drawer class="sidenav-drawer" mode="side" opened="true"  *ngIf="showDashboard">
+    <app-sidenav [user]='user'></app-sidenav>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
+</mat-drawer-container> -->
+
+<mat-sidenav-container class="app-sidenav-container">
+    
+    <mat-sidenav #drawer mode="side" opened class="app-sidenav"
+                [fixedInViewport]="true" [fixedTopGap]="64" *ngIf="showDashboard">
+                <app-sidenav [user]='user'></app-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

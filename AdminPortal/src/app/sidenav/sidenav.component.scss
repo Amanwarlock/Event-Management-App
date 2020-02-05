@@ -1,0 +1,51 @@
+
+  .sidenav-profile-card{
+    background: #19227c !important;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 0;
+  }
+
+  .profile-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  .profile-container img {
+    width: 100%;
+    height: 100%;
+  }
+  
+.mat-list-item-content{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+
+  .sidenav-list .sidenav-list-item{
+
+    ::ng-deep .mat-list-item-content{
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+    button{
+        width: 100%;
+        height: 100%;
+        padding-right: 0;
+        border-radius: 0;
+        text-align: left;
+        padding-left: 12px;
+        color: #00004f;
+        font-size: 15px;
+        mat-icon{
+            padding-right: 12px;
+            color: #00004f;
+        }
+    }
+  }
+  

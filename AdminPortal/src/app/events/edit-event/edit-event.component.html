@@ -1,0 +1,108 @@
+<div class="main" *ngIf="event$ | async as event">
+    <div class="section_1">
+      <mat-toolbar-row class="well-tool-bar">
+        <mat-icon class="well-icon">create</mat-icon>
+        <span>Edit Event</span>
+        <span class="well-spacer"></span>
+      </mat-toolbar-row>
+    </div>
+    <div class="section_2">
+      <mat-card class="well-content">
+
+        <mat-vertical-stepper [linear]="true" #stepper>
+
+          <mat-step [stepControl]="eventNameGroup">
+            <form [formGroup]="eventNameGroup">
+              <ng-template matStepLabel>Fill out event name</ng-template>
+              <mat-form-field>
+                <input matInput placeholder="Event name" formControlName="eventName" required>
+                <mat-error *ngIf="eventNameGroup.controls['eventName'].invalid">Event name is required</mat-error>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="eventDescriptionGroup">
+            <form [formGroup]="eventDescriptionGroup">
+              <ng-template matStepLabel>Fill out event description</ng-template>
+                <mat-form-field class="event-description">
+                  <textarea matInput #message maxlength="256" placeholder="Event Description" formControlName="eventDescription" required></textarea>
+                  <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                  <mat-error *ngIf="eventDescriptionGroup.controls['eventDescription'].invalid">Event description is required</mat-error>
+                </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="eventDateGroup">
+              <form [formGroup]="eventDateGroup">
+                <ng-template matStepLabel>Schedule your event</ng-template>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi #picker></mat-datepicker>
+                  <mat-error *ngIf="eventDateGroup.controls['eventDate'].invalid">Event date is mandatory</mat-error>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="eventBannerGroup">
+              <form [formGroup]="eventBannerGroup">
+                <ng-template matStepLabel>Upload event image</ng-template>
+                <input  type="file" formControlName="eventBanner" accept=".gif,.jpg,.jpeg,.png" (change)="OnEventBannerUpload($event.target.files)"  required />
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="eventGuestGroup">
+              <form [formGroup]="eventGuestGroup">
+                <ng-template matStepLabel>Upload guest file</ng-template>
+                <!-- <button mat-button color="primary" (click)="onGuestUpload()">
+                  <mat-icon>file_upload</mat-icon>
+                  Upload
+               </button>
+               <input formControlName="eventGuests" type="file" id="fileUpload" name="fileUpload" accept="text/csv" style="display:none;"/> -->
+               <!-- <mat-error *ngIf="eventGuestGroup.controls['eventGuests'].invalid">Event guests must be uploaded</mat-error> -->
+
+               <input  type="file" formControlName="eventGuests" id="guestFile" accept=".xlsx, .xls, .csv" (change)="onGuestUpload($event.target.files)"  required />
+
+               <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
+
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+              <button mat-button matStepperPrevious (click)="OnUpdate()">Save</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+

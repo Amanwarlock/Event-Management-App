@@ -1,0 +1,121 @@
+// mat-grid-tile {
+//     background: #19227c;
+    
+//     .well-tool-bar{
+//         position: absolute;
+//         top: 0;
+//         color: #ffffff;
+//         font-size: 20px;
+//         margin-top: 1%;
+//         .well-spacer{
+//             flex: 1 1 auto;
+//         }
+//         .well-icon {
+//             padding: 0 14px;
+//         }
+//         button{
+//             margin-right: 5%;
+//             background: #ffffff;
+//             mat-icon{
+//                 color: #00004f;
+//             }
+//         }
+//     }
+
+//   }
+
+//   .well-content{
+//       width: 85%;
+//       margin: auto;
+//   }
+
+
+  .main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: whitesmoke;
+    // overflow-y: hidden;
+      .section_1{
+        background: #19227c;
+        color: #ffffff;
+        font-size: 20px;
+        height: 150px;
+        .well-tool-bar{
+            padding-top: 2%;
+            .well-spacer{
+                flex: 1 1 auto;
+            }
+            .well-icon {
+                padding: 0 14px;
+            }
+        }
+
+        button{
+            margin-right: 5%;
+            background: #ffffff;
+            mat-icon{
+                color: #00004f;
+            }
+        }
+
+      }
+
+      .section_2{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 90px;
+
+          .well-content{
+              width: 85%;
+              margin: auto;
+              height:90%;
+              z-index: 10;
+              overflow: auto;
+          }
+
+          .well-content .events-list{
+            margin-top: 2%;
+          }
+
+          .events-search-form {
+            min-width: 150px;
+            max-width: 500px;
+            width: 100%;
+
+              .search-full-width {
+                width: 40%;
+                ::ng-deep .mat-form-field-infix{
+                    line-height: 13px;
+                    margin-left: 6px;
+                  }
+    
+              }
+
+              .date-search{
+                width: 30%;
+                line-height: 13px;
+                margin-left: 10%;
+              }
+          }
+
+          .well-spacer{
+            flex: 1 1 auto;
+        }
+
+        mat-paginator {
+            ::ng-deep .mat-paginator-page-size.ng-star-inserted {
+                display: none;
+            }
+        }
+
+        ::-webkit-scrollbar {
+          width: 6px;
+        } 
+        ::-webkit-scrollbar-thumb {
+          background-color: #524aac;
+        }
+
+      }
+  }
