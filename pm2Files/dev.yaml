@@ -1,0 +1,16 @@
+apps:
+- name: AdminPortal
+  cwd: /home/ubuntu/hub/work/DigitalCheckIn/AdminPortal
+  script: ng serve --port 4200
+  watch: true
+- name: backend
+  cwd: /home/ubuntu/hub/work/DigitalCheckIn/backend
+  script: app.js
+  watch: false
+  max_restarts: 2
+  env:
+    PORT: 3000
+    MONGO_URL: mongodb://localhost:27017/checkIn
+    NODE_ENV: DEV
+    TOKEN_EXP: 6h
+    secretKey: hubDX9785734956AWS@Ubunut#$

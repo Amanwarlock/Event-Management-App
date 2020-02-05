@@ -1,0 +1,563 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:3000
+# basePath prefixes all resource paths 
+basePath: /api
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+  - multipart/form-data
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+  - multipart/form-data
+paths:
+  /hearbeat:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_heartbeat
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /v1/login:  
+    x-swagger-router-controller: controller
+    post:
+      operationId: v1_login
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+              $ref: "#/definitions/login_definition"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/logout:
+    x-swagger-router-controller: controller
+    put:
+      operationId: v1_logOut
+      parameters:
+          - name: data
+            in: body
+            required: true
+            schema:
+              $ref: "#/definitions/logout"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/isLoggedIn:
+    x-swagger-router-controller: controller
+    put:
+      operationId: v1_isLoggedIn
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /v1/user:
+    x-swagger-router-controller: controller
+    post:
+      operationId: v1_createUser
+      parameters:
+          - name: data
+            in: body
+            required: true
+            schema:
+                $ref: "#/definitions/user_model"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    get:
+      operationId: v1_userIndex
+      parameters: 
+          - name: filter
+            in: query
+            type: string
+          - name: select
+            in: query
+            type: array
+            items: 
+              type: string
+          - name: page
+            in: query
+            type: integer
+          - name: count
+            in: query
+            type: integer
+          - name: sort
+            in: query
+            type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /v1/user/count:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getUserCount
+      parameters:
+        - name: filter
+          in: query
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /v1/user/{id}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_userById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"    
+
+  /v1/asset/upload:
+    x-swagger-router-controller: controller
+    post:
+      consumes:
+        - multipart/form-data
+      operationId: v1_upload
+      parameters:
+        - name: uploadedFile
+          in: formData
+          type: file
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  
+  /v1/asset/upload/base64:
+    x-swagger-router-controller: controller
+    post:
+      operationId: v1_uploadBase64
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/upload_base64"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /v1/asset/file/{fileName}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getFile
+      parameters:
+        - name: fileName
+          in: path
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+
+  /v1/asset/img/{fileName}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getImage
+      parameters:
+        - name: fileName
+          in: path
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  
+  /v1/asset/doc/{id}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getAssetDoc
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+  /v1/event:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_eventIndex
+      parameters: 
+          - name: filter
+            in: query
+            type: string
+          - name: select
+            in: query
+            type: array
+            items: 
+              type: string
+          - name: page
+            in: query
+            type: integer
+          - name: count
+            in: query
+            type: integer
+          - name: sort
+            in: query
+            type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      operationId: v1_createEvent
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema: 
+            $ref: "#/definitions/event_model"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      operationId: v1_eventUpdate
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema: 
+            $ref: "#/definitions/event_model"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  
+  /v1/event/count:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getEventCount
+      parameters:
+        - name: filter
+          in: query
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  
+  /v1/event/{id}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_getEventById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: select
+          in: query
+          type: array
+          items: 
+            type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"   
+    put:
+      operationId: v1_eventUpdate2
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: data
+          in: body
+          required: true
+          schema: 
+            $ref: "#/definitions/event_model"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"   
+  
+  /v1/event/download/pdf/{id}:
+    x-swagger-router-controller: controller
+    get:
+      operationId: v1_downloadGuestPDF
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"  
+
+  /v1/password/verify:
+    x-swagger-router-controller: controller
+    post:
+      operationId: v1_verifyPassword
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/verify_pwd"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/SuccessResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"  
+    
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  SuccessResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  login_definition:
+    required:
+      - email
+      - password
+      - role
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+
+  user_model:
+      required:
+          - firstName
+          - lastName
+          - role
+          - email
+          - password
+      properties:
+        firstName: 
+            type: string
+        lastName:
+            type: string
+        role: 
+            type: string
+        email:
+            type: string
+        password: 
+            type: string
+        profileImage: 
+            type: string
+  logout:
+    required:
+        - email
+    properties:
+      id: {type: string}
+      email: {type: string}
+  event_model:
+    properties:
+      name: {type: string}
+      description: {type: string}
+      scheduledAt: {type: string}
+      banner: {type: string}
+      guestFile: {type: string}
+      totalGuests: {type: number}
+      guests: 
+          type: array
+          items:
+            properties:
+              firstName: {type: string}
+              lastName: {type: string}
+              email: {type: string}
+              hasCheckedIn: {type: boolean}
+              signature: {type: string}
+  verify_pwd:
+      properties:
+          id: {type: string}
+          password: {type: string}
+  
+  upload_base64:
+      required:
+        - base64
+      properties:
+        base64: {type: string}

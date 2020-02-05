@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="/api/node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="/api/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    <style>
+        .table-container{
+            margin: auto;
+            width: 90%;
+            display: flex;
+            justify-content: center;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            vertical-align: middle;
+        }
+
+        .signature{
+            width: 45%;
+        }
+
+        .navbar{
+            margin-bottom: 4%;
+        }
+</style>
+    <body>
+            <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1">Event Summary</span>
+            </nav>
+            <div class="container">
+
+                <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">{{event.name}}</h4>
+                <p>{{event.description}}</p>
+                <hr>
+                <p class="mb-0">Scheduled At: {{parseDate event.scheduledAt}}</p>
+                </div>
+            
+            </div>
+
+            <div class="table-container">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                                <thead class="table-primary">
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="row">First Name</th>
+                                    <th scope="row">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Signature</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+                                {{#each event.guests}}
+                                    <tr>
+                                        <th scope="row">{{inc @index}}</th>
+                                        <td scope="row">{{this.firstName}}</td>
+                                        <td scope="row">{{this.lastName}}</td>
+                                        <td scope="row">{{this.email}}</td>
+                                        <td scope="row" class="signature"><img src={{this.signatureImg}}  /></td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+    </body>
+</html>
