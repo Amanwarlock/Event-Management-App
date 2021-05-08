@@ -23,7 +23,7 @@
     "express-validator": "^6.3.1",
     "fs-extra": "^8.1.0",
     "gridfs-stream": "^1.1.1",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.7",
     "image-to-base64": "^2.0.1",
     "jsonexport": "^2.4.1",
     "jsonwebtoken": "^8.5.1",
